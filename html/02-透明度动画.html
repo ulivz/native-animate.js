@@ -39,7 +39,8 @@
     window.onload = function () {
 
         var INIT_OPACITY = 100;
-        var TRANSITION_OPACITY = 70;
+        var TRANSITION_OPACITY = 60;
+        var FADE_SPEED = 5;
 
         var targetDiv = document.getElementById('photo-wrapper');
         var photo = targetDiv.getElementsByClassName('photo')[0];
@@ -64,9 +65,9 @@
             var offset = target - _opacity;
             var speed;
             if (offset > 0) {
-                speed = 2.5;
+                speed = FADE_SPEED;
             } else {
-                speed = -2.5;
+                speed = - FADE_SPEED;
             }
             // 存储透明度的实时值
 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04-多物体动画</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            outline: 0;
+            border: 0;
+        }
+
+        #multiple-wrapper {
+
+        }
+
+        #multiple-wrapper > ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #multiple-wrapper > ul > li {
+            display: block;
+            margin: 10px 0;
+            width: 200px;
+            height: 50px;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+<div id="multiple-wrapper">
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        var targetEle = document.getElementsByTagName('li');
+        console.log(targetEle);
+
+    }
+</script>
+</body>
+</html>
