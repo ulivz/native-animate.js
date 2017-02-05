@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01-速度动画</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+            outline: 0;
+        }
+
+        #speed-wrapper {
+            font-size: 0;
+            position: absolute;
+            left: -150px;
+            top: 0;
+            cursor: pointer;
+        }
+
+        #speed-wrapper #meau {
+            font-size: 16px;
+            width: 150px;
+            padding: 0;
+            list-style: none;
+            background: #eee;
+            display: inline-block;
+            box-shadow: 2px 2px 10px #ddd;
+        }
+
+        #speed-wrapper #meau li {
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+        }
+
+        #speed-wrapper #meau li:hover {
+            background: #fff;
+            color: #888;
+        }
+
+        #speed-wrapper .fold {
+            background: #070c11;
+            color: #f01400;
+            width: 14px;
+            border-radius: 0 5px 5px 0;
+            display: inline-block;
+            vertical-align: top;
+            font-size: 14px;
+            padding: 10px 5px;
+            position: relative;
+            top: 96px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="speed-wrapper">
+    <ul id="meau">
+        <li>JavaScript</li>
+        <li>Vue</li>
+        <li>AngularJS</li>
+        <li>React</li>
+        <li>CSS3</li>
+        <li>Webpack</li>
+    </ul>
+    <div class="fold">展开</div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        var targetDiv = document.getElementById('speed-wrapper');
+
+        targetDiv.onmouseover = function () {
+            speedMove(0);
+        }
+
+        targetDiv.onmouseout = function () {
+            speedMove(-150);
+        }
+
+        var timer = null;
+
+        function speedMove(target) {
+            clearInterval(timer);
+            var offset = target - targetDiv.offsetLeft;
+            var speed;
+            if (offset > 0) {
+                speed = 5;
+            } else {
+                speed = -5;
+            }
+            timer = setInterval(function () {
+                if (targetDiv.offsetLeft === target) {
+                    clearInterval(timer);
+                } else {
+                    targetDiv.style.left = targetDiv.offsetLeft + speed + 'px';
+                }
+            }, 10)
+        }
+    }
+</script>
+</body>
+</html>

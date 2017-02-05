@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02-透明度动画</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+            outline: 0;
+        }
+
+        #photo-wrapper {
+            padding: 10px;
+            width: 200px;
+            height: 200px;
+            background: #fff;
+            box-shadow: 2px 2px 10px #ddd;
+        }
+
+        #photo-wrapper .photo {
+            width: 100%;
+            height: 100%;
+            background-image: url(../img/main-small.jpg);
+            background-size: cover;
+            background-position: 100% 100%;
+            background-repeat: no-repeat;
+        }
+
+    </style>
+</head>
+<body>
+<div id="photo-wrapper">
+    <div class="photo"></div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function () {
+
+        var INIT_OPACITY = 100;
+        var TRANSITION_OPACITY = 70;
+
+        var targetDiv = document.getElementById('photo-wrapper');
+        var photo = targetDiv.getElementsByClassName('photo')[0];
+
+        targetDiv.style.opacity = INIT_OPACITY / 100;
+        targetDiv.style.filter = 'alpha(opacity:' + INIT_OPACITY + ')';
+
+        var opacityTimer = null;
+        // 存储当前的透明度值
+        var _opacity = INIT_OPACITY;
+
+        photo.onmouseover = function () {
+            opacityFade(TRANSITION_OPACITY);
+        }
+        photo.onmouseout = function () {
+            opacityFade(INIT_OPACITY);
+        }
+
+        function opacityFade(target) {
+
+            clearInterval(opacityTimer);
+            var offset = target - _opacity;
+            var speed;
+            if (offset > 0) {
+                speed = 2.5;
+            } else {
+                speed = -2.5;
+            }
+            // 存储透明度的实时值
+
+            opacityTimer = setInterval(function () {
+                _opacity += speed;
+                if (_opacity === target) {
+                    opacitySet();
+                    clearInterval(opacityTimer);
+                } else {
+                    opacitySet();
+                }
+            }, 20)
+        }
+
+        function opacitySet() {
+            targetDiv.style.opacity = _opacity / 100;
+            targetDiv.style.filter = 'alpha(opacity:' + _opacity + ')';
+        }
+    }
+</script>
+</body>
+</html>
